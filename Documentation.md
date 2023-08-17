@@ -10,7 +10,7 @@ This project began diagramming the plan for my deployment in Draw.io including h
 
 1. Diagram the plan for deployment on Draw.io:
    
-![Diagram of Deployment 1 1](https://github.com/DANNYDEE93/Deployment1.1D/assets/140758597/48dfdcfa-d239-4aa1-a4a5-2289cc09375b)
+![Diagram of Deployment 1 1]
 
 2. Log into GitHub account
 3. Create new GitHub repository
