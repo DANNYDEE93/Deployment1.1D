@@ -12,17 +12,17 @@ This project began diagramming the plan for my deployment in Draw.io including h
    
 ![Diagram of Deployment 1 1](https://github.com/DANNYDEE93/Deployment1.1D/assets/140758597/48dfdcfa-d239-4aa1-a4a5-2289cc09375b)
 
-
 2. Log into GitHub account
 3. Create new GitHub repository
 4. Create **Documentation.md** file to record the staging and production environment of deployment
-5. Open Kura Labs c4 Deployment-1 repository and follow the provided instructions:
-   https://github.com/kura-labs-org/c4_deployment-1/blob/main/Deployment-instructions.md
+5. Open Kura Labs c4 Deployment-1 repository and follow the provided instructions
 6. Press the **Code** tab and download files from Kura Labs repository
 7. Unzip files by extracting Kura Lab files from the folder populated in your terminal in order for them to upload properly onto your GitHub repository 
 8. Upload Kura Lab repository files into new GitHub repository created in **Step 3**
+   
 
 **9. [Create Build in Jenkins:]**
+
 
 10. Sign into your Jenkins account
 11. Press **New Item** tab to create new pipeline build
@@ -31,8 +31,10 @@ This project began diagramming the plan for my deployment in Draw.io including h
 14. Choose Git in the dropdown from SCM
 15. Go back to newly created GitHub repository and copy the HTTP code or URL of the repository
 16. Paste code into "Repsitory line" in Jenkins
+    
 
 **17. [Create token for Jenkins using GitHub account:]**
+
 
 18. Go back to your GitHub and press profile picture/icon
 19. Select **Settings**-->**Developer Settings**-->**Personal Access Tokens**--> **Tokens(classic)**
@@ -44,12 +46,14 @@ This project began diagramming the plan for my deployment in Draw.io including h
 
 [[Download GitHub Repository to unzip files and re-zip them to upload onto AWS Elastic Beanstalk]]
 
-25. Create zip file folder your File Explorer **[Windows OS]** to compress your GitHub repository. This new compressed zip file should not exceed 500 MB and should not include parent folder from your original repository to ensure that all characters in file are configured correctly in Elastic Beanstalk. You will need to extract files from the folder and create a new compressed zip file like in **Step 7**
+25. Create zip file folder in your File Explorer **[Windows OS]** to compress your GitHub repository. This new compressed zip file should not exceed 500 MB and should not include parent folder from your original repository to ensure that all characters in file are configured correctly in Elastic Beanstalk. You will need to extract files from the folder and create a new compressed zip file like in **Step 7**
 26. Select files within the downloaded file of your repository and transfer them into a new compressed zip folder. This ensures that the files are zipped to Elastic Beanstalk's standards
 
 [[After checking the console output responses and passing the test phase in Jenkins, you can go on to creating **IAM Roles** and the **Python Url Shortener** through **AWS Elastic Beanstalk**]]
 
+
 **[27.Navigating throguh AWS Elastic Beanstalk]**
+
 
 [Create **IAM Roles**]
 
@@ -57,7 +61,7 @@ This project began diagramming the plan for my deployment in Draw.io including h
     
 29. Select **Roles** in Dashboard--> Click **Create role**--> Select **AWS service** for trusted entity type--> Under the dropdown for AWS Services: Select **Elastic Beanstalk**--> Select **Customizable** option under cases to give Elastic Beanstalk permission to manage AWS resources of your deployment--> Click **Next**--> Click **Next**--> Enter **AWS-Elasticbeanstalk-service-role** in Role name--> "Create Role
     
-30. To create the second and third role: Click **Create Role**--> Select **AWS service** for trusted entity type--> Click **EC2** under common use cases--> Click Next--> Under Permission policies: Select **AWSElasticBeanstalkWebTier** and **AWSElasticBeanstalkMulticontainerDocker**--> Click Next--> Enter **Elastic-EC2** in **Role name** field--> Click **Create Role**
+30. To create the second and third role: Click **Create Role**--> Select **AWS service** for trusted entity type--> Click **EC2** under common use cases--> Click Next--> Under Permission policies: Select **AWSElasticBeanstalkWebTier**, **AWSElasticBeanstalkMulticontainerDocker** and **AWSElasticBeanstalkWorkerTier**--> Click Next--> Enter **Elastic-EC2** in **Role name** field--> Click **Create Role**
     
 [These roles allow the instances in your web server environment to access and upload necessare files and grants permissions for Amazon Elastic Container Service to organize and cluster task within container environments.]
 
@@ -70,13 +74,16 @@ This project began diagramming the plan for my deployment in Draw.io including h
 
 33. **Upload and Deploy** your compressed zip file on Elastic Beanstalk. You will know that you passed once the **health status reads "OK"** and you get a response that your deployment has uploaded successfully to your EC2 instance.
 
-**[Drawback #2]:**
+**[Anticipated Drawback]:**
 
-Although, I downloaded a zip file from my repository. This file was not uploading succesfully and the health of my deployment kept changing to "Degraded" because it was not compressed enough to Elastic Beanstalk requirements. After multiple attempts, I found out that I needed to create a completely new compressed zip file with only the files within the downloaded zip file. Only then, was i able to complete my first successful deployment. **Pay close attention to Steps 25 & 26** 
+Although I followed the steps properly, I was not able to deploy my application. The health status showed as degraded. I downloaded the last 100 logs under the **Log tab** under the **Dashboard**. Under the **/var/log/web.stdout.log**, I found the error message: **ModuleNotFoundError: No module named 'application'**
+
+While completing Deployment1DD (found in my repository hub), I ran into a drawback where I named a file incorrectly so Jenkins was not able to read the neccessary file in my repository. Once I saw that my current deployment could not find the application file, I renamed the file **App.py** to **Application.py** in order for AWS Elastic Beanstalk to correctly read the file. When I corrected this error, my web application was able to be downloaded and deployed successfully. 
 
 [Screenshots of my successful deployment on AWS Elastic Beanstalk]
 
-![Screenshot_Deployment 1](https://github.com/DANNYDEE93/Deployment_DD/assets/140758597/0fb109e5-b273-4881-8fb5-6dbbf8c413d5)
+![Screenshot (15)](https://github.com/DANNYDEE93/Deployment1.1D/assets/140758597/1ebec1c6-214d-4541-8a8c-ab04c5d43eb0)
 
-![Screenshot_Deployment 2](https://github.com/DANNYDEE93/Deployment_DD/assets/140758597/9791a8c8-02fe-4462-9ff4-80e370aaa15b)
+![Screenshot (17)](https://github.com/DANNYDEE93/Deployment1.1D/assets/140758597/43be06cf-7c68-44c1-a7e0-07d7a050483a)
 
+![Screenshot (16)](https://github.com/DANNYDEE93/Deployment1.1D/assets/140758597/d7048315-034c-4534-bd1f-9cca8f9e7d42)
