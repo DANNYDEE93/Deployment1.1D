@@ -1,14 +1,15 @@
 # [Purpose of Deployment]
 
-* To deploy a web application using AWS Elastic Beanstalk.
+* To locate and rectify an issue in the code in order to deploy a web application using AWS Elastic Beanstalk.
 
 # [Description]
 
-This project began diagramming the plan for my deployment in Draw.io including how I would use **GitHub**, **Jenkins**, and **AWS Elastic Beanstalk**. I continued to plan and build within a previously created Jenkins account by my instructor. Jenkins allowed me to create and test my deployment in a staging environment to ensure that it would return a 200 response from the server once deployed. Once my build passed the test phase in Jenkins, I created IAM roles and an EC2 instance through Elasticn Beanstalk. This allowed AWS access with the necessary permissions to update and launch my deployment through the IAM roles of **AWSElasticBeanstalkWebTier** and  **AWSElasticBeanstalkMulticontainerDocker**. Finally, the EC2 instance createed an applicable production environment to deploy my web applicaiton successfully. 
+This project began diagramming the plan for my deployment in Draw.io including how I would use **GitHub**, **Jenkins**, and **AWS Elastic Beanstalk**. I continued to plan and build within a previously created Jenkins account by my instructor. Jenkins allowed me to create and test my deployment in a staging environment to ensure that it would return a 200 response from the server once deployed. Once my build passed the test phase in Jenkins, I created IAM roles and an EC2 instance through Elasticn Beanstalk. This allowed AWS access with the necessary permissions to update and launch my deployment through the IAM roles of **AWSElasticBeanstalkWebTier**, **AWSElasticBeanstalkMulticontainerDocker** and **AWSElasticBeanstalkWorkerTier**. After recieving a **Health status of Degraded**, I went into the Logs and found the issue in **/var/log/web.stdout.log** that showed the name of the application file containing my Python code was typed incorretly. Once I rectified the issue, Elastic Beanstalk was able to read my deployment properly. Finally, the EC2 instance created an applicable production environment to deploy my web applicaiton successfully. 
 
-###### [Below you will find the necessary steps that I took to test and deploy my web applicaiton, as well as some drawbacks that I was able to rectify along the way:] 
+###### [Below you will find the necessary steps that I took to test and deploy my web applicaiton:]**
 
 1. Diagram the plan for deployment on Draw.io:
+   
 ![Diagram of Deployment 1 1](https://github.com/DANNYDEE93/Deployment1.1D/assets/140758597/48dfdcfa-d239-4aa1-a4a5-2289cc09375b)
 
 
@@ -39,11 +40,7 @@ This project began diagramming the plan for my deployment in Draw.io including h
 21. Create note description-->Select scopes: **repo** and **admin repo** to give full access to repository.
 22. Click **Generate token**--> Copy and past link into **password line** in Jenkins
 23. Continue on Jenkins-->Add token associated with repository--> Select main branch
-24. Submit to generate build and select **Build Now** and pass staging environment in Jenkins
-
-**[Drawback #1]:**
-
-My multiple attempts to download onto Jenkins were unsuccessful because my copied Jenkinsfile was saved as a **.txt** file that was blocking Jenkins from reading the file's code properly. Once I deleted **.txt** off the file, my build passed the test stage on Jenkins. 
+24. Submit to generate build and select **Build Now** and pass staging environment in Jenkins 
 
 [[Download GitHub Repository to unzip files and re-zip them to upload onto AWS Elastic Beanstalk]]
 
